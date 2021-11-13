@@ -1,0 +1,36 @@
+#Autores: Gonzalez Rocha Jesus Daniel & Cuevas Gonzalez Miguel Angel
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+fig, ax = plt.subplots()
+carga1= float(input("Captura el valor de tu carga 1 (nC): "))
+carga2= float(input("Captura el valor de tu carga 2 (nC): "))
+carga1 = carga1*(10**-9)
+carga2 =  carga2*(10**-9)
+resultados = np.zeros((11))
+resultadossim = np.zeros((11))
+distancias = np.zeros((11))
+k = 8.98755*(10**9)
+
+tabla=[]
+
+for i in range(11):    
+    distancias[i] = float(input("Captura el valor de la distancia con respecto a la carga 1 en cm: "))
+    distanciab = float(input("Captura el valor de la distancia con respecto a la carga 2 en cm: "))
+    resultadossim[i] = float(input("Captura el potencial obtenido en el punto:"))
+    resultados[i] = k *(((carga1)/(distancias[i]/100))+((carga2)/(distanciab/100)))
+    tabla.append([distancias[i],distanciab,resultadossim[i],resultados[i]])
+    
+plt.plot(distancias,resultados, linestyle = 'dotted',color='tab:orange')
+plt.xlabel('Distancia[cm]',fontdict={'color':'tab:blue'})
+plt.ylabel('Voltaje[V]',fontdict={'color':'tab:blue'})
+plt.title('Comportamiento de Voltaje respecto a distancia de la carga 1',loc='left',fontdict={'fontweight':'bold'})
+plt.show()
+plt.plot(distancias,resultadossim, linestyle = 'dotted',color='tab:orange')
+plt.xlabel('Distancia[cm]',fontdict={'color':'tab:blue'})
+plt.ylabel('Voltaje[V]',fontdict={'color':'tab:blue'})
+plt.title('Comportamiento de Voltaje respecto a distancia de la carga 1 (sim)',loc='left',fontdict={'fontweight':'bold'})
+plt.show()
+print("Tabla de resultados")
+tablaPandas = pd.DataFrame(tabla,columns=["Distancia de a","Distancia de b","Simulador [V]","Calculado[V]"])
+print(tablaPandas)

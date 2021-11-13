@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Nov 12 19:25:32 2021
+
+@author: Mendez Ascencio Maribel
+"""
+#PROCEDIMIENTO A y B
+import math as m
+import matplotlib.pyplot as plt
+
+k=8.987*m.pow(10,9)
+q=1*m.pow(10,-9)
+
+x=list()
+y=list()
+d=0.2#m
+while(d<0.7):
+    VA=(k*q)/(d)
+    print(VA)
+    x.append(d)
+    y.append(VA)
+    d+=0.2
+d=1#m
+while(d<4.5):
+    VA=(k*q)/(d)
+    print(VA)
+    x.append(d)
+    y.append(VA)
+    d+=0.5
+
+
+plt.plot(x, y)
+ 
+plt.xlabel('x - Distancia')
+plt.ylabel('y - Diferencial')
+plt.title('Diferencia de Potencial Absoluto para carga negativa 1nC')
+
+plt.show()
